@@ -1,0 +1,31 @@
+body{
+    background-color: #000000 !important;
+}
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(220, 53, 69, 0.925);
+}
+#articleForum{
+    background-color: #111111 !important;
+}
+#paintItBlack{
+    background-color: #0a0a0a !important;
+}
+.imgIvan{
+   display: inline-block;
+   width: 300px;
+   height: 500px;
+  }
+   .mobile{
+       display: none;
+   }
+   @media screen and (max-width:768px){
+  .mobile{
+   display: inline-block;
+   }
+   .other{
+       display: none;
+   }
+  }
