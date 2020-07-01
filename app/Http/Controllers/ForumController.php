@@ -43,7 +43,6 @@ class ForumController extends Controller
     public function postAddThread(Request $request){
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:60',
-            'username' => 'required|max:30',
             'content' => 'required|max:1000',
         ]);
         if ($validator->fails()) {
@@ -55,10 +54,10 @@ class ForumController extends Controller
        $id = new ForumPost();
        $id->content = $request->input('content');
        $id->topic = $request->input('title');
-       $id->posted_by = $request->input('username');
+       $id->user_id = auth()->user()->id;
        $id->created_at = Carbon::now();
        $id->last_post_on = Carbon::now();
-       $id->last_post_by = $request->input('username');
+       $id->last_post_by = auth()->user()->name;
        $id->save();
 
         return redirect()->action('ForumController@getIndex');

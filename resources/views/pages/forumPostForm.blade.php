@@ -34,12 +34,6 @@
         <input type="text" class="form-control" aria-label="Sizing example input" value="RE: {{$post->topic}} " disable aria-describedby="inputGroup-sizing-sm" disabled> 
       </div>
     </div>
-    <div class="d-flex p-3 bd-highlight">
-        <label class="text-danger pr-2">Name:</label>
-        <div class="input-group input-group-sm ml-4">
-            <input type="text" class="form-control" aria-label="Sizing example input" name="username" value="Anonymous" disable aria-describedby="inputGroup-sizing-sm"> 
-          </div>
-        </div>
     @endif
 
     @if($action == "ModifyThread")

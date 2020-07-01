@@ -20,6 +20,8 @@ class ProfileController extends Controller
     }
     public function getModifyProfile($id){
         $user = User::findOrFail($id);
+        
+        $this->authorize('update', $user->profile);
 
         return view('pages/profileEdit',['user' => $user]);
     }
@@ -40,7 +42,7 @@ class ProfileController extends Controller
         $user->profile->description = $request->input('content');
         if(request('avatar') != null){
             $imagePath = request('avatar')->store('avatars', 'public');
-            $image = Image::make(public_path("storage/{$imagePath}"))->resize(250, 200);
+            $image = Image::make(public_path("storage/{$imagePath}"))->resize(250, 270);
             $image->save();
             $user->profile->avatar = $imagePath;
         }

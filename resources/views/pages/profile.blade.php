@@ -18,12 +18,14 @@
     </div>
     <div class="col-5 ml-5">
         <div class="d-flex justify-content-end pl-1 ml-3">
-        <form method="GET" action="/profile/{{$user->profile->id}}/edit">
+            @can('update', $user->profile)
+            <form method="GET" action="/profile/{{$user->profile->id}}/edit">
                 <div class="bd-highlight pl-3">
                     <button type="submit" class="btn btn-lg btn-outline-danger px-5" id="articleForum">Edit
                         Profile</button>
                 </div>
             </form>
+            @endcan
         </div>
     </div>
     <div>

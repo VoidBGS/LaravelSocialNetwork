@@ -18,6 +18,8 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->integer('post_id')->unsigned();
             $table->foreign('post_id')->references('id')->on('forum_posts');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->longText('content');
             $table->string('posted_by', 30);
             $table->dateTime('posted_on', 0);

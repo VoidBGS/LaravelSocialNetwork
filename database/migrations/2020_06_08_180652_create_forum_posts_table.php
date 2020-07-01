@@ -18,7 +18,8 @@ class CreateForumPostsTable extends Migration
             $table->increments('id');
             $table->string('topic', 30);
             $table->longText('content');
-            $table->string('posted_by', 20);
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->dateTime('last_post_on', 0);
             $table->string('last_post_by', 20);
             $table->timestamps();

@@ -40,6 +40,14 @@ class User extends Authenticatable
     {
             return $this->hasOne(Profile::class);
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::Class);
+    }
+    public function posts()
+    {
+        return $this->hasMany(ForumPost::Class);
+    }
     public function getAvatarAttribute(){
         return $this->profile->avatar;
     }

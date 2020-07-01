@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\AuthManager;
 use App\ForumPost;
 use App\Comment;
 use Carbon\Carbon;
@@ -27,7 +28,6 @@ class CommentController extends Controller
                  // Adding Comments and Updating the last post date and user
             public function postAddComment(Request $request){
                 $validator = Validator::make($request->all(), [
-                    'username' => 'required|max:30',
                     'content' => 'required|max:1000',
                 ]);
                 if ($validator->fails()) {
@@ -38,14 +38,15 @@ class CommentController extends Controller
                 else{
                 $object = new Comment();
                 $object->post_id = $request->id;
+                $object->user_id = auth()->user()->id;
                 $object->content = $request->input('content');
-                $object->posted_by = $request->input('username');
+                $object->posted_by = auth()->user()->name;
                 $object->posted_on = Carbon::now();
                 $object->save(); 
-                
+
                 $forumObject = ForumPost::findOrFail($request->id);
                 $forumObject->last_post_on = Carbon::now();
-                $forumObject->last_post_by = $request->input('username');
+                $forumObject->last_post_by = auth()->user()->name;
                 $forumObject->save();
         
                 return redirect()->action('ForumController@getForumPost', ['id' => $request->id]);

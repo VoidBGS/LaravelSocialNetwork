@@ -6,7 +6,7 @@
          <h5 class="text-2xl text-light"><strong class="text-danger">Edit Profile - {{ $user->name }}</strong></h5>
      </div>
  </header>
- <div class='border'>
+ <div class='border pb-5'>
     @if ($errors->any())
     <div class="alert-danger" style="background-color: black">
         <ul>
@@ -18,7 +18,7 @@
 @endif
  <form method="POST" action="/profile/{{$user->id}}/edit" enctype="multipart/form-data">
          @csrf
-     <div class="position-absolute p-3">
+     <div class="position-absolute p-2 mb-2">
         <img src="{{$user->profile->avatarImage()}}" class="rounded-circle ">
         <input type="file" class="form-control-file pt-3 text-danger" id="avatar" name="avatar">
      </div>
