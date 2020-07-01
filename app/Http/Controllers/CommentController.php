@@ -37,7 +37,7 @@ class CommentController extends Controller
                 }
                 else{
                 $object = new Comment();
-                $object->post_id = $request->id;
+                $object->forum_post_id = $request->id;
                 $object->user_id = auth()->user()->id;
                 $object->content = $request->input('content');
                 $object->posted_by = auth()->user()->name;
@@ -54,6 +54,9 @@ class CommentController extends Controller
             }
             public function getModifyComment($commentId){
                  $object = Comment::findOrFail($commentId);
+                 
+                 $this->authorize('update', $object);
+
                  $action = "Modify";
                  $title = "Modify Comment";
         
@@ -74,13 +77,16 @@ class CommentController extends Controller
                 $object->updated_at = Carbon::now();
                 $object->save();
         
-                return redirect()->action('ForumController@getForumPost', ['id' => $object->post_id]);
+                return redirect()->action('ForumController@getForumPost', ['id' => $object->forum_post_id]);
                 }
            }
             public function getDeleteComment($commentId){
                 $object = Comment::findOrFail($commentId);
+
+                $this->authorize('delete', $object);
+
                 $object->delete();
         
-                return redirect()->action('ForumController@getForumPost', ['id' => $object->post_id]);
+                return redirect()->action('ForumController@getForumPost', ['id' => $object->forum_post_id]);
             }
 }

@@ -21,18 +21,24 @@
                     </div>
                     <div class="text-muted small ml-3">
                 
+                        @can('update', $topic)
                         <div class="d-flex justify-content-end bd-highlight mb-3">
                             <div class="p-2 bd-highlight">
+
                         <form method="GET" action="{{ action('ForumController@getModifyThread', ['id' => $topic->id])}}">
                         <button type="submit" class="btn btn-sm btn-outline-danger px-4 ml-4" id="articleForum">Modify</button>
                         </form>
                     </div>
+                    @endcan
+                    @can('delete', $topic)
                     <div class="p-2 bd-highlight">
                         <form method="GET" action="{{ action('ForumController@getDeleteThread', ['id' => $topic->id])}}">
                         <button type="submit" class="btn btn-sm btn-outline-danger px-4 ml-4" id="articleForum">Delete</button>
                         </form>
                     </div>
                     </div>
+                    @endcan
+                    
                 </div>
                 </div>
             </div>
@@ -52,10 +58,13 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header" id="articleForum">
+                    <div class="d-flex justify-content-end">
+                        <div class="text-muted small">Posted on: {{$p->posted_on}}</div>
+                    </div>
                 <div class="media flex-wrap w-100 align-items-center"> <img src="{{$p->user->profile->avatarImage()}}" class="d-block ui-w-40 rounded-circle" style="max-width: 120px" alt="">
                         <div class="media-body ml-3"> <a href="/profile/{{$p->user->id}}" data-abc="true" class="text-danger">{{ $p->posted_by }}</a>
-                        <div class="text-muted small">Posted on: {{$p->posted_on}}</div>
-                        <div class="text-muted small">Member since <strong>{{substr($p->user->created_at, 0 , 10)}}</strong></div>
+                        <div class="text-muted small">Rank: <strong>{{$topic->user->title}}</strong></div>
+                        <div class="text-muted small">Registered on: <strong>{{substr($p->user->created_at, 0 , 10)}}</strong></div>
                         <div class="d-flex">
                         <div class="text-muted small"><strong>{{$p->user->posts->count()}}</strong> posts</div>
                         <div class="text-muted small pl-3"><strong>{{$p->user->comments->count()}}</strong> comments</div>
@@ -64,18 +73,22 @@
                         <div class="text-muted small ml-3">
                             <div class="d-flex justify-content-end bd-highlight mb-3">
                                 <div class="p-2 bd-highlight">
+                                    @can('update', $p)
                                     <form method="GET"
                                         action="{{ action('CommentController@getModifyComment', ['id' => $p->id]) }}">
                                         <button type="submit" class="btn btn-sm btn-outline-danger px-4 ml-4"
                                             id="articleForum">Modify</button>
                                     </form>
                                 </div>
+                                @endcan
+                                @can('delete', $p)
                                 <div class="p-2 bd-highlight">
                                     <form method="GET"
                                         action="{{ action('CommentController@getDeleteComment', ['id' => $p->id]) }}">
                                         <button type="submit" class="btn btn-sm btn-outline-danger px-4 ml-4"
                                             id="articleForum">Delete</button>
                                     </form>
+                                    @endcan
                                 </div>
                             </div>
                             </form>

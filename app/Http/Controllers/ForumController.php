@@ -21,17 +21,11 @@ class ForumController extends Controller
 
     //Getting selected forum post
     public function getForumPost($post_id){
-        $data = Comment::all();
         $topic = ForumPost::findOrFail($post_id);
-        $comments = [];
-        foreach ($data as $key) {
-            if($key->post_id == $post_id)
-            {
-                array_push($comments, $key);
-            }
-        }
+        $data = $topic->comments->all();
+        sort($data);
 
-        return view('pages/forumPost', ['posts' => $comments], ['topic' => $topic] );
+        return view('pages/forumPost', ['posts' => $data], ['topic' => $topic] );
     }
 
     //Returns the page for adding new forum posts
@@ -65,6 +59,9 @@ class ForumController extends Controller
     }
     public function getModifyThread($commentId){
         $id = ForumPost::findOrFail($commentId);
+        
+        $this->authorize('update', $id);
+
         $action = "ModifyThread";
         $title = "Modify Thread";
         return view('pages/forumPostForm', ['post' => $id, 'action' => $action, 'actionTitle'=> $title]);
@@ -91,6 +88,9 @@ class ForumController extends Controller
     }
     public function getDeleteThread($commentId){
         $id = ForumPost::findOrFail($commentId);
+
+        $this->authorize('delete', $id);
+        
         $associatedComments = Comment::all();
         foreach($associatedComments as $key){
             if($key->post_id == $commentId){
