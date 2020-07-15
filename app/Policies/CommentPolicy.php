@@ -53,7 +53,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
-        return $user->id === $comment->user->id;
+        return $user->id === $comment->user->id || $user->title === "Owner";
     }
 
     /**
@@ -65,7 +65,7 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        return $user->id === $comment->user->id;
+        return $user->id === $comment->user->id || $user->title === "Owner";
     }
 
     /**

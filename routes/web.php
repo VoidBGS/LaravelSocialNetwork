@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'IndexController@getIndex');
 Route::get('/forum', 'ForumController@getIndex');
-Route::get('/weightloss', 'WeightlossController@getIndex');
+Route::get('/memes', 'MemesController@getIndex');
 
 Route::get('/forum/thread', 'ForumController@getAddThread');
 Route::post('/forum/thread', 'ForumController@postAddThread');
@@ -30,6 +30,12 @@ Route::get('/forum/post/{id}/delete/comment', 'CommentController@getDeleteCommen
 Route::get('/forum/post/{id}/modify/topic', 'ForumController@getModifyThread');
 Route::post('/forum/post/{id}/modify/topic', 'ForumController@postModifyThread');
 Route::get('/forum/post/{id}/delete/thread', 'ForumController@getDeleteThread');
+
+Route::get('/memes/post', 'MemesController@getAddMeme');
+Route::post('/memes/post', 'MemesController@postAddMeme');
+Route::get('memes/{id}/delete', 'MemesController@getDeleteMeme');
+Route::get('memes/id/{id}', 'MemesController@getMemePage');
+Route::post('memes/id/{id}', 'MemesController@postAddCommentMeme');
 
 Route::get('/profile/{id}/edit', 'ProfileController@getModifyProfile');
 Route::post('/profile/{id}/edit', 'ProfileController@postModifyProfile');

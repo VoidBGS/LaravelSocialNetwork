@@ -48,6 +48,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(ForumPost::Class);
     }
+    public function memes()
+    {
+        return $this->hasMany(Meme::Class);
+    }
     public function getAvatarAttribute(){
         return $this->profile->avatar;
     }

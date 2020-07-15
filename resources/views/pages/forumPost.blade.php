@@ -12,15 +12,22 @@
             <div class="card-header" id="articleForum">
                 <div class="media flex-wrap w-100 align-items-center"> <img src="{{$topic->user->profile->avatarImage()}}" class="d-block ui-w-40 rounded-circle" style="max-width: 120px" alt="">
                 <div class="media-body ml-3"> <a href="/profile/{{$topic->user->id}}" data-abc="true" class="text-danger">{{$topic->user->name}}</a>
-                    <div class="text-muted small">Rank: <strong>{{$topic->user->title}}</strong></div>
+                    <div class="text-muted small"><strong>{{$topic->user->title}}</strong></div>
                 <div class="text-muted small">Registered on: <strong>{{substr($topic->user->created_at, 0 , 10)}}</strong></div>
                 <div class="d-flex">
+                    @if($topic->user->posts->count() === 1)
+                    <div class="text-muted small"><strong>{{$topic->user->posts->count()}}</strong> post</div>
+                    @else
                     <div class="text-muted small"><strong>{{$topic->user->posts->count()}}</strong> posts</div>
+                    @endif
+                    @if($topic->user->comments->count() === 1)
+                    <div class="text-muted small pl-3"><strong>{{$topic->user->comments->count()}}</strong> comment</div>
+                    @else
                     <div class="text-muted small pl-3"><strong>{{$topic->user->comments->count()}}</strong> comments</div>
+                    @endif
                     </div>
                     </div>
                     <div class="text-muted small ml-3">
-                
                         @can('update', $topic)
                         <div class="d-flex justify-content-end bd-highlight mb-3">
                             <div class="p-2 bd-highlight">
@@ -63,11 +70,19 @@
                     </div>
                 <div class="media flex-wrap w-100 align-items-center"> <img src="{{$p->user->profile->avatarImage()}}" class="d-block ui-w-40 rounded-circle" style="max-width: 120px" alt="">
                         <div class="media-body ml-3"> <a href="/profile/{{$p->user->id}}" data-abc="true" class="text-danger">{{ $p->posted_by }}</a>
-                        <div class="text-muted small">Rank: <strong>{{$topic->user->title}}</strong></div>
+                        <div class="text-muted small"><strong>{{$p->user->title}}</strong></div>
                         <div class="text-muted small">Registered on: <strong>{{substr($p->user->created_at, 0 , 10)}}</strong></div>
                         <div class="d-flex">
+                        @if($p->user->posts->count() === 1)
+                        <div class="text-muted small"><strong>{{$p->user->posts->count()}}</strong> post</div>
+                        @else
                         <div class="text-muted small"><strong>{{$p->user->posts->count()}}</strong> posts</div>
+                        @endif
+                        @if($p->user->comments->count() === 1)
+                        <div class="text-muted small pl-3"><strong>{{$p->user->comments->count()}}</strong> comment</div>
+                        @else
                         <div class="text-muted small pl-3"><strong>{{$p->user->comments->count()}}</strong> comments</div>
+                        @endif
                         </div>
                         </div>
                         <div class="text-muted small ml-3">
@@ -79,19 +94,18 @@
                                         <button type="submit" class="btn btn-sm btn-outline-danger px-4 ml-4"
                                             id="articleForum">Modify</button>
                                     </form>
+                                    @endcan
                                 </div>
-                                @endcan
-                                @can('delete', $p)
                                 <div class="p-2 bd-highlight">
+                                    @can('delete', $p)
                                     <form method="GET"
                                         action="{{ action('CommentController@getDeleteComment', ['id' => $p->id]) }}">
                                         <button type="submit" class="btn btn-sm btn-outline-danger px-4 ml-4"
                                             id="articleForum">Delete</button>
-                                    </form>
-                                    @endcan
+                                </form>
+                                @endcan
                                 </div>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>

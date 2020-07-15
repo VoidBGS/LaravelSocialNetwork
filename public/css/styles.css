@@ -13,11 +13,14 @@ hr {
 #paintItBlack{
     background-color: #0a0a0a !important;
 }
-.imgIvan{
-   display: inline-block;
-   width: 300px;
-   height: 500px;
-  }
+.addOverflow{
+    height:270px;
+    overflow-y: scroll;
+}
+.fancyText{
+    font-family: 'Chiller', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 50pt;
+}
    .mobile{
        display: none;
    }
