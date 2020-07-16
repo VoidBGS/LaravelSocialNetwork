@@ -7,6 +7,7 @@ use App\ForumPost;
 use App\Comment;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Purifier;
 
 class ForumController extends Controller
 {
@@ -46,8 +47,8 @@ class ForumController extends Controller
         }
         else{
        $id = new ForumPost();
-       $id->content = $request->input('content');
-       $id->topic = $request->input('title');
+       $id->content = Purifier::clean(trim($request->input('content')));
+       $id->topic = Purifier::clean($request->input('title'));
        $id->user_id = auth()->user()->id;
        $id->created_at = Carbon::now();
        $id->last_post_on = Carbon::now();
@@ -78,8 +79,8 @@ class ForumController extends Controller
         }
         else{
         $id = ForumPost::findOrFail($request->id);
-        $id->topic = $request->input('title');
-        $id->content = $request->input('content');
+        $id->topic = Purifier::clean($request->input('title'));
+        $id->content = Purifer::clean($request->input('content'));
         $id->updated_at = Carbon::now();
         $id->save();
 

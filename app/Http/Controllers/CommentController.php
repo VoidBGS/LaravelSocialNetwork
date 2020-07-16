@@ -9,6 +9,7 @@ use Illuminate\Auth\AuthManager;
 use App\ForumPost;
 use App\Comment;
 use Carbon\Carbon;
+use Purifier;
 
 
 class CommentController extends Controller
@@ -39,7 +40,7 @@ class CommentController extends Controller
                 $object = new Comment();
                 $object->forum_post_id = $request->id;
                 $object->user_id = auth()->user()->id;
-                $object->content = $request->input('content');
+                $object->content = Purifier::clean($request->input('content'));
                 $object->posted_by = auth()->user()->name;
                 $object->posted_on = Carbon::now();
                 $object->save(); 
@@ -73,7 +74,7 @@ class CommentController extends Controller
                 }
                 else{
                 $object = Comment::findOrFail($request->id);
-                $object->content = $request->input('content');
+                $object->content = Purifier::clean($request->input('content'));
                 $object->updated_at = Carbon::now();
                 $object->save();
         

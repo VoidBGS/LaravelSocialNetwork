@@ -16,7 +16,7 @@
                         <h4 class="text-light pl-1"><a
                                 href={{ action('ForumController@getForumPost', ['id' => $p->id]) }}
                                 class="text-light">{{ $p->topic }}</h4>
-                        <p class="text-light pl-1">Started by: <a href="#" class="text-danger">{{ $p->user->name }}</p>
+                        <p class="text-light pl-1">Started by: <a href="profile/{{$p->user->id}}" class="text-danger">{{ $p->user->name }}</p>
                     </td>
                     <td class="text-light pl-2">Date Posted:<br>{{ $p->created_at }}</td>
                     <td class="text-light pl-3">By: {{ $p->last_post_by }} <br> On {{ $p->last_post_on }}</td>

@@ -15,6 +15,8 @@
         <p class="text-danger">Role: <strong>{{ $user->title }}</strong></p>
         <p class="text-danger">Created On: <strong>{{ $user->created_at }}</strong></p>
         <p class="text-danger">Last Logged In: <strong>{{ $user->last_logged_in }}</strong></p>
+    <p class="text-danger">Memes Posted: <strong>{{ $user->memes->count()}} <small><u><a href="/profile/{{$user->id}}/memes" class="text-danger">show</a></u></small></strong></p>
+    <p class="text-danger">Topics Created: <strong>{{ $user->posts->count()}} <small><u><a href="/profile/{{$user->id}}/topics" class="text-danger">show</a></u></small></strong></p>
     </div>
     <div class="col-5 ml-5">
         <div class="d-flex justify-content-end pl-1 ml-3">

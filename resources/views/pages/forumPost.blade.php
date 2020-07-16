@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <div class="card-body" id="articleForum">
-                    <p class="text-light">{{ $p->content }}</p>
+                    <div class="text-light">{!! $p->content !!}</div>
                 </div>
             </div>
         </div>

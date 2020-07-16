@@ -18,6 +18,16 @@ class ProfileController extends Controller
 
         return view('pages/profile', ['user' => $user]);
     }
+    public function getMemes($id){
+        $user = User::findOrFail($id);
+        $memes = $user->memes;
+        return view('pages/profileMemes', ['memes' => $memes, 'user' => $user]);
+    }
+    public function getPosts($id){
+        $user = User::findOrFail($id);
+        $posts = $user->posts;
+        return view('pages/profilePosts', ['posts' => $posts, 'user' => $user]);
+    }
     public function getModifyProfile($id){
         $user = User::findOrFail($id);
         
