@@ -36,12 +36,15 @@
     </div>
 @endsection
 @section('home')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/sdw97xuzwo20qdpau4o6i34s54zr7pwmdnmltlyu45n6s993/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
      tinymce.init({
-        selector: '#textarea',
+        forced_root_block : "",
+        selector: 'textarea',
         width : 1100,
-        toolbar: false,
+        plugins: "emoticons",
+        menubar: false,
+        toolbar: 'undo redo | bold italic underline | cut copy paste | emoticons',
       });
 </script>
 @endsection

@@ -28,6 +28,17 @@ class ProfileController extends Controller
         $posts = $user->posts;
         return view('pages/profilePosts', ['posts' => $posts, 'user' => $user]);
     }
+    public function getComments($id){
+        $user = User::findOrFail($id);
+        $comments = [];
+        foreach($user->comments as $c)
+        {
+            if(is_null($c->post) == false){
+            array_push($comments, $c);
+            }
+        }
+        return view('pages/profileComments', ['comments' => $comments, 'user' => $user]);
+    }
     public function getModifyProfile($id){
         $user = User::findOrFail($id);
         

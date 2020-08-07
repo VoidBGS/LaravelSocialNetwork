@@ -11,7 +11,7 @@ class Comment extends Model
     ];
    public function post()
    {
-       return $this->belongsTo(ForumPost::class);
+       return $this->belongsTo(ForumPost::class, 'forum_post_id');
    }
    public function meme(){
        return $this->belongsTo(Meme::class);

@@ -67,7 +67,7 @@
 </div>
 @endsection
 @section('home')
-<script src="https://cdn.tiny.cloud/1/sdw97xuzwo20qdpau4o6i34s54zr7pwmdnmltlyu45n6s993/tinymce/5/tinymce.min.js" referrerpolicy="origin"/></script>
+<script src="https://cdn.tiny.cloud/1/sdw97xuzwo20qdpau4o6i34s54zr7pwmdnmltlyu45n6s993/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
      tinymce.init({
         forced_root_block : "",

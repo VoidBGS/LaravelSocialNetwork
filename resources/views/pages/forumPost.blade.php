@@ -2,9 +2,8 @@
 @section('title', "Forum Post")
 @section('content')
 <header class="border-bottom mb-2 px-2 rounded" id="articleForum">
-    <div class="d-flex p-2 bd-highlight">
-    <h5 class="text-2xl text-light"><strong class="text-danger">Subject:</strong> {{$topic->topic}} <strong class="text-danger"><div class="text-muted small">Posted on: {{$topic->created_at}}</div></strong></h5>
-    </div>
+    <h3 class="text-light"><strong class="text-danger">Subject:</strong> {{$topic->topic}}</h3>
+    <h5><strong class="text-danger"><div class="text-muted small">Posted on: {{$topic->created_at}}</div></strong><h5>
 </header>
 <div class="row">
     <div class="col-md-12">

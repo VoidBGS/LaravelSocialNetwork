@@ -8,11 +8,11 @@
 </header>
  <div class="col-12 justify-content-start p-3 border border-white" id="articleForum" >
      <div class="row offset-md-1 mr-5 " id="articleForum">
-         <div class="col-6 pr-3 border-bottom border-white" id="articleForum">
+         <div class="col-6 mr-4" id="articleForum">
              <img src="/storage/{{ $meme->meme }}" class="p-3">
          </div>
-         <div class="col-5 border-bottom border-white" id="articleForum">
-             <div class="d-flex mt-3">
+         <div class="col-5 border-left border-dark" id="articleForum">
+             <div class="d-flex mt-3 pt-2">
                  <img src="{{ $meme->user->profile->avatarImage() }}" href="#" class="rounded-circle"
                      style="max-width: 25px; max-height: 25px;">
                  <article class="pb-1 ml-1"><a href="/profile/{{ $meme->user->id }}"
@@ -26,7 +26,7 @@
                  <div class="d-flex pb-3">
                      <img src="{{ $comment->user->profile->avatarImage() }}" href="#" class="rounded-circle ml-1"
                          style="max-width: 25px; max-height: 25px;">
-                     <article class="text-danger pl-1">{{ $comment->posted_by }}
+                 <a class="text-danger" href="/profile/{{$comment->user->id}}"><article class="text-danger pl-1">{{ $comment->posted_by }}</a>
                          <small>{{ $comment->content }}</small></article>
                  </div>
                  @endforeach

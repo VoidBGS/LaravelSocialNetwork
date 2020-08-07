@@ -41,6 +41,7 @@ Route::post('memes/id/{id}', 'MemesController@postAddCommentMeme');
 Route::get('/profile/{id}/edit', 'ProfileController@getModifyProfile');
 Route::get('/profile/{id}/topics', 'ProfileController@getPosts');
 Route::get('/profile/{id}/memes', 'ProfileController@getMemes');
+Route::get('/profile/{id}/comments', 'ProfileController@getComments');
 Route::post('/profile/{id}/edit', 'ProfileController@postModifyProfile');
 Route::get('/profile/{id}', 'ProfileController@getIndex');
 

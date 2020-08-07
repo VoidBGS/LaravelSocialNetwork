@@ -101,6 +101,7 @@
         @yield('content')
     </div>
     @yield('home')
+    <script src="http://unpkg.com/turbolinks"></script>
 </body>
 
 </html>

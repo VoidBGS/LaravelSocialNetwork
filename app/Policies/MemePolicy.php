@@ -65,7 +65,7 @@ class MemePolicy
      */
     public function delete(User $user, Meme $meme)
     {
-        return $user->id === $meme->user->id;
+        return $user->id === $meme->user->id || $user->title === "Owner";
     }
 
     /**
